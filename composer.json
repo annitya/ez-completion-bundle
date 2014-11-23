@@ -1,0 +1,8 @@
+{
+  "name": "flageolett/ezcompletionbundle",
+  "autoload" : {
+    "psr-0":{
+      "KTQ": "src/"
+    }
+  }
+}
