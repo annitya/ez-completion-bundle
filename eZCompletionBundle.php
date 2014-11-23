@@ -1,6 +1,6 @@
 <?php
 
-namespace Flageolett\eZCompletionBundle;
+namespace Flageolett\ezcompletionbundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
