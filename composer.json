@@ -2,7 +2,7 @@
   "name": "flageolett/ezcompletionbundle",
   "autoload" : {
     "psr-0":{
-      "flageolett": "src/"
+      "Flageolett": "src/"
     }
   }
 }

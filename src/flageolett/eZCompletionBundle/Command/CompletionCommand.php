@@ -4,7 +4,7 @@
  * @since 22.11.14
  */
 
-namespace Flageolett\eZCompletionBundle\Command;
+namespace Flageolett\ezcompletionbundle\Command;
 
 use eZ\Publish\API\Repository\Values\ContentType\ContentTypeGroup;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
