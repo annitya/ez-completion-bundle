@@ -1,6 +1,6 @@
 <?php
 
-namespace Flageolett\ezcompletionbundle\DependencyInjection;
+namespace Flageolett\eZCompletionBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

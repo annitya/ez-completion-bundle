@@ -1,6 +1,6 @@
 <?php
 
-namespace Flageolett\ezcompletionbundle\DependencyInjection;
+namespace Flageolett\eZCompletionBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
