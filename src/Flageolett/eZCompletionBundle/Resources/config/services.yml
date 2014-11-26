@@ -2,3 +2,11 @@ services:
     ezcompletionbundle.contenttype:
         class: Flageolett\ezcompletionbundle\Service\ContentTypeCompletion
         arguments: [ @ezpublish.api.service.content_type ]
+    ezcompletionbundle.language:
+        class: Flageolett\ezcompletionbundle\Service\LanguageCompletion
+        arguments: [ @ezpublish.api.repository ]
+    ezcompletionbundle.completion_service:
+        class: Flageolett\ezcompletionbundle\Service\CompletionService
+        calls:
+           - [addCompletionService, [@ezcompletionbundle.contenttype]]
+           - [addCompletionService, [@ezcompletionbundle.language]]

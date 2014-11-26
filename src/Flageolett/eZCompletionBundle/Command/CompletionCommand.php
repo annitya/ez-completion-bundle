@@ -12,8 +12,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CompletionCommand extends ContainerAwareCommand
 {
-    const OPTION_NAME_COMPLETION_TYPE = 'type';
-
     protected function configure()
     {
         $this->setName('ezcode:completion');
@@ -22,10 +20,7 @@ class CompletionCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
-
-        $completions = array();
-        $completions += $container->get('ezcompletionbundle.contenttype')->getCompletions();
-
+        $completions = $this->getContainer()->get('ezcompletionbundle.completion_service')->getCompletions();
         $output->writeln(json_encode($completions));
     }
 }

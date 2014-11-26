@@ -8,8 +8,9 @@ namespace Flageolett\ezcompletionbundle\Service;
 
 use \eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\ContentType\ContentTypeGroup;
+use Flageolett\ezcompletionbundle\Interfaces\CompletionInterface;
 
-class ContentTypeCompletion
+class ContentTypeCompletion implements CompletionInterface
 {
     /** @var ContentTypeService */
     protected $contentTypeService;
