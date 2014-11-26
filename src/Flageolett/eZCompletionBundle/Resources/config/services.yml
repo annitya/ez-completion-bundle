@@ -1,1 +1,4 @@
 services:
+    ezcompletionbundle.contenttype:
+        class: Flageolett\ezcompletionbundle\Service\ContentTypeCompletion
+        arguments: [ @ezpublish.api.service.content_type ]
