@@ -19,8 +19,7 @@ class CompletionCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $container = $this->getContainer();
         $completions = $this->getContainer()->get('ezcompletionbundle.completion_service')->getCompletions();
-        $output->writeln(json_encode($completions));
+        $output->writeln(json_encode($completions, JSON_PRETTY_PRINT));
     }
 }

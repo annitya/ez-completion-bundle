@@ -5,8 +5,18 @@ services:
     ezcompletionbundle.language:
         class: Flageolett\ezcompletionbundle\Service\LanguageCompletion
         arguments: [ @ezpublish.api.repository ]
+    ezcompletionbundle.fieldtype:
+        class: Flageolett\ezcompletionbundle\Service\FieldTypeCompletion
+        arguments: [ @ezpublish.api.service.field_type ]
+
+    ezcompletionbundle.objectstate:
+        class: Flageolett\ezcompletionbundle\Service\ObjectStateCompletion
+        arguments: [ @ezpublish.api.service.object_state ]
+
     ezcompletionbundle.completion_service:
         class: Flageolett\ezcompletionbundle\Service\CompletionService
         calls:
            - [addCompletionService, [@ezcompletionbundle.contenttype]]
            - [addCompletionService, [@ezcompletionbundle.language]]
+           - [addCompletionService, [@ezcompletionbundle.fieldtype]]
+           - [addCompletionService, [@ezcompletionbundle.objectstate]]
