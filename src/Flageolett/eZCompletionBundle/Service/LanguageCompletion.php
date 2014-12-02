@@ -29,7 +29,7 @@ class LanguageCompletion implements CompletionInterface
             return array(
                 'id' => $language->id,
                 'code' => $language->languageCode,
-                'name' => $language->name
+                'identifier' => $language->name
             );
         }, $languageObjects);
 

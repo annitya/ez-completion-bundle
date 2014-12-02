@@ -36,7 +36,7 @@ class ObjectStateCompletion implements CompletionInterface
             $names = $group->getNames();
             $completions[] = array(
                 'id' => (int)$group->id,
-                'name' => array_pop($names)
+                'identifier' => array_pop($names)
             );
         }
 
@@ -53,7 +53,7 @@ class ObjectStateCompletion implements CompletionInterface
                 $names = $objectState->getNames();
                 $completions[] = array(
                     'id' => (int)$objectState->id,
-                    'name' => array_pop($names)
+                    'identifier' => array_pop($names)
                 );
             }
         }
