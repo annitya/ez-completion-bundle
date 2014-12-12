@@ -4,10 +4,10 @@
  * @since 27.11.14
  */
 
-namespace Flageolett\ezcompletionbundle\Service;
+namespace Flageolett\eZCompletionBundle\Service;
 
 use eZ\Publish\API\Repository\FieldTypeService;
-use Flageolett\ezcompletionbundle\Interfaces\CompletionInterface;
+use Flageolett\eZCompletionBundle\Interfaces\CompletionInterface;
 
 class FieldTypeCompletion implements CompletionInterface
 {

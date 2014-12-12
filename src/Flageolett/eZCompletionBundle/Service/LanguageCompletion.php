@@ -4,12 +4,12 @@
  * @since 26.11.14
  */
 
-namespace Flageolett\ezcompletionbundle\Service;
+namespace Flageolett\eZCompletionBundle\Service;
 
 use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Values\Content\Language;
-use Flageolett\ezcompletionbundle\Interfaces\CompletionInterface;
+use Flageolett\eZCompletionBundle\Interfaces\CompletionInterface;
 
 class LanguageCompletion implements CompletionInterface
 {
@@ -28,8 +28,8 @@ class LanguageCompletion implements CompletionInterface
         {
             return array(
                 'id' => $language->id,
-                'code' => $language->languageCode,
-                'identifier' => $language->name
+                'identifier' => $language->languageCode,
+                'name' => $language->name
             );
         }, $languageObjects);
 

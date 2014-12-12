@@ -1,27 +1,27 @@
 services:
     ezcompletionbundle.contenttype:
-        class: Flageolett\ezcompletionbundle\Service\ContentTypeCompletion
+        class: Flageolett\eZCompletionBundle\Service\ContentServiceCompletion
         arguments: [ @ezpublish.api.service.content_type ]
     ezcompletionbundle.language:
-        class: Flageolett\ezcompletionbundle\Service\LanguageCompletion
+        class: Flageolett\eZCompletionBundle\Service\LanguageCompletion
         arguments: [ @ezpublish.api.repository ]
     ezcompletionbundle.fieldtype:
-        class: Flageolett\ezcompletionbundle\Service\FieldTypeCompletion
+        class: Flageolett\eZCompletionBundle\Service\FieldTypeCompletion
         arguments: [ @ezpublish.api.service.field_type ]
 
     ezcompletionbundle.objectstate:
-        class: Flageolett\ezcompletionbundle\Service\ObjectStateCompletion
+        class: Flageolett\eZCompletionBundle\Service\ObjectStateCompletion
         arguments: [ @ezpublish.api.service.object_state ]
 
     ezcompletionbundle.roles:
-        class: Flageolett\ezcompletionbundle\Service\RoleCompletion
+        class: Flageolett\eZCompletionBundle\Service\RoleCompletion
         arguments: [ @ezpublish.api.inner_repository, @ezpublish.config.resolver, @ezpublish_legacy.kernel ]
 
     ezcompletionbundle.completion_service:
-        class: Flageolett\ezcompletionbundle\Service\CompletionService
+        class: Flageolett\eZCompletionBundle\Service\CompletionService
         calls:
            - [addCompletionService, [@ezcompletionbundle.contenttype]]
-           - [addCompletionService, [@ezcompletionbundle.language]]
-           - [addCompletionService, [@ezcompletionbundle.fieldtype]]
-           - [addCompletionService, [@ezcompletionbundle.objectstate]]
-           - [addCompletionService, [@ezcompletionbundle.roles]]
+           #- [addCompletionService, [@ezcompletionbundle.language]]
+           #- [addCompletionService, [@ezcompletionbundle.fieldtype]]
+           #- [addCompletionService, [@ezcompletionbundle.objectstate]]
+           #- [addCompletionService, [@ezcompletionbundle.roles]]

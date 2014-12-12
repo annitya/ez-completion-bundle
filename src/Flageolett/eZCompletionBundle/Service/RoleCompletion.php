@@ -4,12 +4,12 @@
  * @since 27.11.14
  */
 
-namespace Flageolett\ezcompletionbundle\Service;
+namespace Flageolett\eZCompletionBundle\Service;
 
 use eZ\Publish\API\Repository\Values\User\Limitation;
 use eZ\Publish\API\Repository\Values\User\Policy;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Flageolett\ezcompletionbundle\Interfaces\CompletionInterface;
+use Flageolett\eZCompletionBundle\Interfaces\CompletionInterface;
 use eZ\Publish\Core\Repository\Repository;
 
 class RoleCompletion implements CompletionInterface

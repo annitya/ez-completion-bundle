@@ -4,11 +4,11 @@
  * @since 27.11.14
  */
 
-namespace Flageolett\ezcompletionbundle\Service;
+namespace Flageolett\eZCompletionBundle\Service;
 
 use eZ\Publish\API\Repository\ObjectStateService;
 use eZ\Publish\API\Repository\Values\ObjectState\ObjectStateGroup;
-use Flageolett\ezcompletionbundle\Interfaces\CompletionInterface;
+use Flageolett\eZCompletionBundle\Interfaces\CompletionInterface;
 
 class ObjectStateCompletion implements CompletionInterface
 {

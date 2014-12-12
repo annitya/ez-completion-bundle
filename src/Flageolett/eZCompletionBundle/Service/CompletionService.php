@@ -4,13 +4,13 @@
  * @since 26.11.14
  */
 
-namespace Flageolett\ezcompletionbundle\Service;
+namespace Flageolett\eZCompletionBundle\Service;
 
-use Flageolett\ezcompletionbundle\Interfaces\CompletionInterface;
+use Flageolett\eZCompletionBundle\Abstracts\CompletionAbstract;
 
-class CompletionService implements CompletionInterface
+class CompletionService extends CompletionAbstract
 {
-    /** @var CompletionInterface[] */
+    /** @var CompletionAbstract[] */
     protected $completionServices;
 
     public function addCompletionService($completionService)
@@ -22,7 +22,8 @@ class CompletionService implements CompletionInterface
     {
         $completions = array();
         foreach ($this->completionServices as $completionService) {
-            $completions += $completionService->getCompletions();
+            $completionService->setLanguage($this->language);
+            $completions = array_merge($completions, $completionService->getCompletions());
         }
 
         return $completions;
