@@ -1,0 +1,10 @@
+parameters:
+    contenttypeservice_completions:
+        contentType:
+            - { method: loadContentType, parameterIndex: 0, lookupValue: name, returnValue: id }
+            - { method: loadContentTypeDraft, parameterIndex: 0, lookupValue: name, returnValue: id }
+            - { method: loadContentTypeByIdentifier, parameterIndex: 0, lookupValue: name, returnValue: identifier }
+            - { method: loadContentTypeByRemoteId, parameterIndex: 0, lookupValue: name, returnValue: remoteId }
+        contentTypeGroup:
+            - { method: loadContentTypeGroup, parameterIndex: 0, lookupValue: identifier, returnValue: id }
+            - { method: loadContentTypeGroupByIdentifier, parameterIndex: 0, lookupValue: identifier, returnValue: identifier }

@@ -9,11 +9,11 @@ namespace Flageolett\eZCompletionBundle\Entity;
 class Completion
 {
     public $lookupValue;
-    public $returnValue = false;
+    public $returnValue;
 
-    public function __construct($lookupValue, $returnValue = false)
+    public function __construct($lookupValue, $returnValue)
     {
         $this->lookupValue = $lookupValue;
-        $this->returnValue = $returnValue ?: $lookupValue;
+        $this->returnValue = $returnValue;
     }
 }
