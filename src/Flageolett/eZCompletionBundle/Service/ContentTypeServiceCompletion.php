@@ -17,42 +17,20 @@ class ContentTypeServiceCompletion extends CompletionAbstract
 {
     /** @var ContentTypeService */
     protected $contentTypeService;
-    /** @var array */
-    protected $config;
 
-    public function __construct(ContentTypeService $contentTypeService, $config)
+    public function __construct(ContentTypeService $contentTypeService)
     {
         $this->contentTypeService = $contentTypeService;
-        $this->config = $config;
     }
 
-    public function getCompletions()
+    protected function getDataSource()
     {
-        $dataSource = array(
+        return array(
             'contentType' => $this->fetchContentTypes(),
             'contentTypeGroup' => $this->fetchContentTypeGroups()
         );
-        $completions = array();
-        foreach ($this->config as $type => $completions) {
-            foreach ($completions[$type] as $completion) {
-                $method = $completion['method'];
-                $parameterIndex = $completion['parameterIndex'];
-                $completionList = array();
-                foreach ($dataSource[$type] as $completionData) {
-                    $lookupValue = $completionData[$completion['lookupValue']];
-                    $returnValue = $completionData[$completion['returnValue']];
-                    $completionList[] = new Completion($lookupValue, $returnValue);
-                }
-                $completions[] = new CompletionContainer($method, $parameterIndex, $completionList);
-            }
-        }
-
-        return $completions;
     }
 
-    /**
-     * @return ContentType[]
-     */
     protected function fetchContentTypes()
     {
         $contentTypeGroups = $this->contentTypeService->loadContentTypeGroups();
@@ -61,8 +39,8 @@ class ContentTypeServiceCompletion extends CompletionAbstract
             $contentTypes = array_merge(array_map(function(ContentType $contentType)
             {
                 return array(
-                    'id' => $contentType->id,
-                    'name' => $this->getContentTypeName($contentType),
+                    'id' => (int)$contentType->id,
+                    'name' => $this->getTranslatedName($contentType),
                     'identifier' => $contentType->identifier,
                     'remoteId' => $contentType->remoteId
                 );
@@ -72,23 +50,12 @@ class ContentTypeServiceCompletion extends CompletionAbstract
         return $contentTypes;
     }
 
-    protected function getContentTypeName(ContentType $contentType)
-    {
-        $name = $contentType->getName($this->language);
-        if (!$name) {
-            $names = $contentType->getNames();
-            $name = array_shift($names);
-        }
-
-        return $name;
-    }
-
     protected function fetchContentTypeGroups()
     {
         return array_map(function(ContentTypeGroup $contentTypeGroup)
         {
             return array(
-                'id' => $contentTypeGroup->id,
+                'id' => (int)$contentTypeGroup->id,
                 'identifier' => $contentTypeGroup->identifier
             );
         }, $contentTypeGroups = $this->contentTypeService->loadContentTypeGroups());

@@ -12,10 +12,10 @@ class CompletionContainer
     public $parameterIndex;
     public $completions;
 
-    public function __construct($method, $parameterIndex, $source)
+    public function __construct($method, $parameterIndex, $completions)
     {
         $this->method = $method;
         $this->parameterIndex = $parameterIndex;
-        $this->completions = call_user_func($source);
+        $this->completions = $completions;
     }
 }

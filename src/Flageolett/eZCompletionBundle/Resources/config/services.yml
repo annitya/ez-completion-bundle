@@ -1,27 +1,34 @@
 services:
     ezcompletionbundle.contenttype:
         class: Flageolett\eZCompletionBundle\Service\ContentTypeServiceCompletion
-        arguments: [ @ezpublish.api.service.content_type, %contenttypeservice_completions% ]
-    ezcompletionbundle.language:
-        class: Flageolett\eZCompletionBundle\Service\LanguageCompletion
-        arguments: [ @ezpublish.api.repository ]
+        arguments: [ @ezpublish.api.service.content_type ]
+        calls:
+            - [setConfig, [%contenttypeservice_completions%]]
     ezcompletionbundle.fieldtype:
-        class: Flageolett\eZCompletionBundle\Service\FieldTypeCompletion
+        class: Flageolett\eZCompletionBundle\Service\FieldTypeServiceCompletion
         arguments: [ @ezpublish.api.service.field_type ]
-
+        calls:
+            - [setConfig, [%fieldtypeservice_completions%]]
+    ezcompletionbundle.language:
+        class: Flageolett\eZCompletionBundle\Service\LanguageServiceCompletion
+        arguments: [ @ezpublish.api.repository ]
+        calls:
+            - [setConfig, [%languageservice_completions%]]
     ezcompletionbundle.objectstate:
-        class: Flageolett\eZCompletionBundle\Service\ObjectStateCompletion
+        class: Flageolett\eZCompletionBundle\Service\ObjectStateServiceCompletion
         arguments: [ @ezpublish.api.service.object_state ]
+        calls:
+            - [setConfig, [%objectstateservice_completions%]]
 
-    ezcompletionbundle.roles:
-        class: Flageolett\eZCompletionBundle\Service\RoleCompletion
-        arguments: [ @ezpublish.api.inner_repository, @ezpublish.config.resolver, @ezpublish_legacy.kernel ]
+#    ezcompletionbundle.roles:
+#        class: Flageolett\eZCompletionBundle\Service\RoleCompletion
+#        arguments: [ @ezpublish.api.inner_repository, @ezpublish.config.resolver, @ezpublish_legacy.kernel ]
 
     ezcompletionbundle.completion_service:
         class: Flageolett\eZCompletionBundle\Service\CompletionService
         calls:
            - [addCompletionService, [@ezcompletionbundle.contenttype]]
-           #- [addCompletionService, [@ezcompletionbundle.language]]
-           #- [addCompletionService, [@ezcompletionbundle.fieldtype]]
-           #- [addCompletionService, [@ezcompletionbundle.objectstate]]
+           - [addCompletionService, [@ezcompletionbundle.fieldtype]]
+           - [addCompletionService, [@ezcompletionbundle.language]]
+           - [addCompletionService, [@ezcompletionbundle.objectstate]]
            #- [addCompletionService, [@ezcompletionbundle.roles]]

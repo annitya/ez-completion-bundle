@@ -8,10 +8,12 @@ namespace Flageolett\eZCompletionBundle\Service;
 
 use Flageolett\eZCompletionBundle\Abstracts\CompletionAbstract;
 
-class CompletionService extends CompletionAbstract
+class CompletionService
 {
     /** @var CompletionAbstract[] */
     protected $completionServices;
+    /** @var string */
+    protected $language;
 
     public function addCompletionService($completionService)
     {
@@ -27,5 +29,10 @@ class CompletionService extends CompletionAbstract
         }
 
         return $completions;
+    }
+
+    public function setLanguage($language)
+    {
+        $this->language = $language;
     }
 }

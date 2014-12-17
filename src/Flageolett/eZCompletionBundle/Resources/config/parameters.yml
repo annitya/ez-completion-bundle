@@ -1,10 +1,23 @@
 parameters:
     contenttypeservice_completions:
         contentType:
-            - { method: loadContentType, parameterIndex: 0, lookupValue: name, returnValue: id }
-            - { method: loadContentTypeDraft, parameterIndex: 0, lookupValue: name, returnValue: id }
-            - { method: loadContentTypeByIdentifier, parameterIndex: 0, lookupValue: name, returnValue: identifier }
-            - { method: loadContentTypeByRemoteId, parameterIndex: 0, lookupValue: name, returnValue: remoteId }
+            - { method: loadContentType, lookupValue: name, returnValue: id }
+            - { method: loadContentTypeDraft, lookupValue: name, returnValue: id }
+            - { method: loadContentTypeByIdentifier, lookupValue: name, returnValue: identifier }
+            - { method: loadContentTypeByRemoteId, lookupValue: name, returnValue: remoteId }
         contentTypeGroup:
-            - { method: loadContentTypeGroup, parameterIndex: 0, lookupValue: identifier, returnValue: id }
-            - { method: loadContentTypeGroupByIdentifier, parameterIndex: 0, lookupValue: identifier, returnValue: identifier }
+            - { method: loadContentTypeGroup, lookupValue: identifier, returnValue: id }
+            - { method: loadContentTypeGroupByIdentifier, lookupValue: identifier }
+    fieldtypeservice_completions:
+        fieldType:
+            - { method: hasFieldType, lookupValue: identifier }
+            - { method: getFieldType, lookupValue: identifier }
+    languageservice_completions:
+        language:
+            - { method: loadLanguage, lookupValue: name, returnValue: code }
+            - { method: loadLanguage, lookupValue: name, returnValue: id }
+    objectstateservice_completions:
+        objectstate:
+            - { method: loadObjectState, lookupValue: name, returnValue: id }
+        objectstategroup:
+            - { method: loadObjectStateGroup, lookupValue: name, returnValue: id}

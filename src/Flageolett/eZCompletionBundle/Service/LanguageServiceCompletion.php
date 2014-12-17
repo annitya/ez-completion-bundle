@@ -9,9 +9,10 @@ namespace Flageolett\eZCompletionBundle\Service;
 use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Values\Content\Language;
+use Flageolett\eZCompletionBundle\Abstracts\CompletionAbstract;
 use Flageolett\eZCompletionBundle\Interfaces\CompletionInterface;
 
-class LanguageCompletion implements CompletionInterface
+class LanguageServiceCompletion extends CompletionAbstract
 {
     /** @var LanguageService */
     protected $languageService;
@@ -21,18 +22,16 @@ class LanguageCompletion implements CompletionInterface
         $this->languageService = $repository->getContentLanguageService();
     }
 
-    public function getCompletions()
+    protected function getDataSource()
     {
-        $languageObjects = $this->languageService->loadLanguages();
-        $languages = array_map(function(Language $language)
-        {
+        $language = array_map(function(Language $language) {
             return array(
-                'id' => $language->id,
-                'identifier' => $language->languageCode,
+                'id' => (int)$language->id,
+                'code' => $language->languageCode,
                 'name' => $language->name
             );
-        }, $languageObjects);
+        }, $this->languageService->loadLanguages());
 
-        return compact('languages');
+        return compact('language');
     }
 }
