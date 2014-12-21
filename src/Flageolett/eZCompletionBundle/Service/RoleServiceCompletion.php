@@ -11,7 +11,6 @@ use eZ\Publish\API\Repository\Values\User\Policy;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\Repository\Values\User\Role;
 use Flageolett\eZCompletionBundle\Abstracts\CompletionAbstract;
-use Flageolett\eZCompletionBundle\Interfaces\CompletionInterface;
 use eZ\Publish\Core\Repository\Repository;
 
 class RoleServiceCompletion extends CompletionAbstract
@@ -42,11 +41,9 @@ class RoleServiceCompletion extends CompletionAbstract
 
         $module = array_map(function($module) {
             return array('identifier' => $module);
-        }, $this->fetchModules());
+        }, $this->configResolver->getParameter('ModuleSettings.ModuleList', 'module'));
 
         $data = compact('module', 'role');
-        $data['view'] = $this->fetchModuleViews($this->fetchModules());
-
         $data['limitation'] = $this->fetchLimitations();
 
         return $data;
@@ -65,7 +62,7 @@ class RoleServiceCompletion extends CompletionAbstract
         });
     }
 
-    public function fetchLimitations()
+    protected function fetchLimitations()
     {
         $policies = array();
         foreach ($this->fetchRoles() as $role) {
@@ -91,37 +88,5 @@ class RoleServiceCompletion extends CompletionAbstract
         }, $limitations);
 
         return array_values($limitations);
-    }
-
-    public function fetchModules()
-    {
-        return $this->configResolver->getParameter('ModuleSettings.ModuleList', 'module');
-    }
-
-    public function fetchModuleViews($modules)
-    {
-        return $this->legacyKernel->runCallback(function() use($modules)
-        {
-            $moduleRepositories = \eZModule::activeModuleRepositories();
-            \eZModule::setGlobalPathList($moduleRepositories);
-
-            $views = array();
-            foreach ($modules as $moduleIdentifier) {
-                $module = \eZModule::findModule($moduleIdentifier);
-                if (!$module->hasAttribute('views')) {
-                    continue;
-                }
-
-                $viewList = array_filter(array_keys($module->attribute('views')));
-                foreach ($viewList as $view) {
-                    $views[] = array(
-                        'name' => $view,
-                        'module' => $module->Name
-                    );
-                }
-            }
-
-            return $views;
-        });
     }
 }

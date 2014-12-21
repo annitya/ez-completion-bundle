@@ -24,11 +24,12 @@ class CompletionCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $completionService = $this->getContainer()->get('ezcompletionbundle.completion_service');
         $language = $input->getOption(self::OPTION_LANGUAGE);
+        $completionService = $this->getContainer()->get('ezcompletionbundle.completion_service');
         $completionService->setLanguage($language);
 
-        $completions = $completionService->getCompletions();
-        $output->writeln(json_encode(array('list' => $completions), JSON_PRETTY_PRINT));
+        $completions = array('list' => $completionService->getCompletions());
+
+        $output->writeln(json_encode($completions, JSON_PRETTY_PRINT));
     }
 }

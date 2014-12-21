@@ -30,6 +30,7 @@ parameters:
         module:
             - { method: getLimitationTypesByModuleFunction, lookupValue: identifier }
             - { method: newPolicyCreateStruct, lookupValue: identifier }
+    moduleviewservice_completions:
         view:
             - { method: getLimitationTypesByModuleFunction, lookupValue: name, parameterIndex: 1 }
             - { method: newPolicyCreateStruct, lookupValue: name, parameterIndex: 1 }

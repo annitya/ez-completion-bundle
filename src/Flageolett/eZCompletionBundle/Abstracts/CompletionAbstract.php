@@ -8,17 +8,14 @@ namespace Flageolett\eZCompletionBundle\Abstracts;
 
 use Flageolett\eZCompletionBundle\Entity\Completion;
 use Flageolett\eZCompletionBundle\Entity\CompletionContainer;
+use Flageolett\eZCompletionBundle\Traits\LanguageAware;
 
 abstract class CompletionAbstract
 {
-    protected $language;
+    use LanguageAware;
+
     /** @var array */
     protected $config;
-
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-    }
 
     public function setConfig($config)
     {

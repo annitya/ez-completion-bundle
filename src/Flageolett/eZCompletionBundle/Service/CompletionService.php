@@ -7,13 +7,14 @@
 namespace Flageolett\eZCompletionBundle\Service;
 
 use Flageolett\eZCompletionBundle\Abstracts\CompletionAbstract;
+use Flageolett\eZCompletionBundle\Traits\LanguageAware;
 
 class CompletionService
 {
+    use LanguageAware;
+
     /** @var CompletionAbstract[] */
     protected $completionServices;
-    /** @var string */
-    protected $language;
 
     public function addCompletionService($completionService)
     {
@@ -29,10 +30,5 @@ class CompletionService
         }
 
         return $completions;
-    }
-
-    public function setLanguage($language)
-    {
-        $this->language = $language;
     }
 }
