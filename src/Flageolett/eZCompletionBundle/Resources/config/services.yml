@@ -19,10 +19,11 @@ services:
         arguments: [ @ezpublish.api.service.object_state ]
         calls:
             - [setConfig, [%objectstateservice_completions%]]
-
-#    ezcompletionbundle.roles:
-#        class: Flageolett\eZCompletionBundle\Service\RoleCompletion
-#        arguments: [ @ezpublish.api.inner_repository, @ezpublish.config.resolver, @ezpublish_legacy.kernel ]
+    ezcompletionbundle.roles:
+        class: Flageolett\eZCompletionBundle\Service\RoleServiceCompletion
+        arguments: [ @ezpublish.api.inner_repository, @ezpublish.config.resolver, @ezpublish_legacy.kernel ]
+        calls:
+            - [setConfig, [%roleservice_completions%]]
 
     ezcompletionbundle.completion_service:
         class: Flageolett\eZCompletionBundle\Service\CompletionService
@@ -31,4 +32,4 @@ services:
            - [addCompletionService, [@ezcompletionbundle.fieldtype]]
            - [addCompletionService, [@ezcompletionbundle.language]]
            - [addCompletionService, [@ezcompletionbundle.objectstate]]
-           #- [addCompletionService, [@ezcompletionbundle.roles]]
+           - [addCompletionService, [@ezcompletionbundle.roles]]

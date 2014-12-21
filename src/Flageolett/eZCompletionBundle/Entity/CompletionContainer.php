@@ -8,14 +8,12 @@ namespace Flageolett\eZCompletionBundle\Entity;
 
 class CompletionContainer
 {
-    public $method;
-    public $parameterIndex;
+    public $matcher;
     public $completions;
 
     public function __construct($method, $parameterIndex, $completions)
     {
-        $this->method = $method;
-        $this->parameterIndex = $parameterIndex;
+        $this->matcher = compact('method', 'parameterIndex');
         $this->completions = $completions;
     }
 }

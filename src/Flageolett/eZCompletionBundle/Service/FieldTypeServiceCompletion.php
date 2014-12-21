@@ -24,11 +24,10 @@ class FieldTypeServiceCompletion extends CompletionAbstract
     {
         $fieldType = array_map(function(FieldType $fieldType)
         {
-            return array(
-                'identifier' => $fieldType->getFieldTypeIdentifier()
-            );
+            return array('identifier' => $fieldType->getFieldTypeIdentifier());
         }, $this->fieldTypeService->getFieldTypes());
 
+        $fieldType = array_values($fieldType);
         return compact('fieldType');
     }
 }

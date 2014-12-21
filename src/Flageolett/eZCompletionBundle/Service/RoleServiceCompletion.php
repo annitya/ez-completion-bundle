@@ -32,15 +32,7 @@ class RoleServiceCompletion extends CompletionAbstract
 
     protected function getDataSource()
     {
-        $roleService = $this->repository->getRoleService();
-        $roleService->getLimitationType('ParentOwner');
-        $roleService->loadRole(1);
-        $roleService->loadRoleByIdentifier('Anonymous');
-        // How to get all modules and functions?
-        $roleService->getLimitationTypesByModuleFunction('ezexceed', '');
-        $roleService->newPolicyCreateStruct('class', 'removeclass');
-
-        $roles = array_map(function(Role $role)
+        $role = array_map(function(Role $role)
         {
             return array(
                 'id' => (int)$role->id,
@@ -52,13 +44,19 @@ class RoleServiceCompletion extends CompletionAbstract
             return array('identifier' => $module);
         }, $this->fetchModules());
 
-        $data = compact('module', 'roles');
-        $data['view'] = $this->fetchModuleViews();
+        $data = compact('module', 'role');
+        $data['view'] = $this->fetchModuleViews($this->fetchModules());
+
         $data['limitation'] = $this->fetchLimitations();
 
         return $data;
     }
 
+    /**
+     * @return Role[]
+     *
+     * @throws \Exception
+     */
     protected function fetchRoles()
     {
         return $this->repository->sudo(function()
@@ -70,15 +68,17 @@ class RoleServiceCompletion extends CompletionAbstract
     public function fetchLimitations()
     {
         $policies = array();
-        $policies = array_merge(array_map(function(Role $role)
-        {
-            return $role->getPolicies();
-        }, $this->fetchRoles()), $policies);
+        foreach ($this->fetchRoles() as $role) {
+            $policies = array_merge($role->getPolicies(), $policies);
+        }
 
         $limitations = array();
-        $limitations = array_merge(array_map(function(Limitation $limitation) {
-            return $limitation->getIdentifier();
-        }, $policies), $limitations);
+        /** @var Policy $policy */
+        foreach ($policies as $policy) {
+            foreach ($policy->getLimitations() as $limitation) {
+                $limitations[] = $limitation->getIdentifier();
+            }
+        }
 
         $limitationReflection = new \ReflectionClass('\eZ\Publish\API\Repository\Values\User\Limitation');
         $constants = $limitationReflection->getConstants();
@@ -98,11 +98,10 @@ class RoleServiceCompletion extends CompletionAbstract
         return $this->configResolver->getParameter('ModuleSettings.ModuleList', 'module');
     }
 
-    public function fetchModuleViews()
+    public function fetchModuleViews($modules)
     {
-        return $this->legacyKernel->runCallback(function()
+        return $this->legacyKernel->runCallback(function() use($modules)
         {
-            $modules = $this->fetchModules();
             $moduleRepositories = \eZModule::activeModuleRepositories();
             \eZModule::setGlobalPathList($moduleRepositories);
 
@@ -113,13 +112,13 @@ class RoleServiceCompletion extends CompletionAbstract
                     continue;
                 }
 
-                $views = array_merge(array_map(function($view) use($module)
-                {
-                    return array(
+                $viewList = array_filter(array_keys($module->attribute('views')));
+                foreach ($viewList as $view) {
+                    $views[] = array(
                         'name' => $view,
-                        'module' => $module
+                        'module' => $module->Name
                     );
-                }, array_keys($module->attribute('views')), $views));
+                }
             }
 
             return $views;

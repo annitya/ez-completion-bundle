@@ -15,9 +15,21 @@ parameters:
     languageservice_completions:
         language:
             - { method: loadLanguage, lookupValue: name, returnValue: code }
-            - { method: loadLanguage, lookupValue: name, returnValue: id }
+            - { method: loadLanguageById, lookupValue: name, returnValue: id }
     objectstateservice_completions:
         objectstate:
             - { method: loadObjectState, lookupValue: name, returnValue: id }
         objectstategroup:
-            - { method: loadObjectStateGroup, lookupValue: name, returnValue: id}
+            - { method: loadObjectStateGroup, lookupValue: name, returnValue: id }
+    roleservice_completions:
+        limitation:
+            - { method: getLimitationType, lookupValue: identifier }
+        role:
+            - { method: loadRole, lookupValue: identifier, returnValue: id }
+            - { method: loadRoleByIdentifier, lookupValue: identifier }
+        module:
+            - { method: getLimitationTypesByModuleFunction, lookupValue: identifier }
+            - { method: newPolicyCreateStruct, lookupValue: identifier }
+        view:
+            - { method: getLimitationTypesByModuleFunction, lookupValue: name, parameterIndex: 1 }
+            - { method: newPolicyCreateStruct, lookupValue: name, parameterIndex: 1 }
