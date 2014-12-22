@@ -16,6 +16,13 @@ parameters:
         language:
             - { method: loadLanguage, lookupValue: name, returnValue: code }
             - { method: loadLanguageById, lookupValue: name, returnValue: id }
+    #urlaliasservice_completions:
+            - { method: createUrlAlias, lookupValue: name, returnValue: code, parameterIndex: 2 }
+            - { method: createGlobalUrlAlias, lookupValue: name, returnValue: code, parameterIndex: 2 }
+            - { method: listLocationAliases, lookupValue: name, returnValue: code, parameterIndex: 2 }
+            - { method: listGlobalAliases, lookupValue: name, returnValue: code, parameterIndex: 0 }
+            - { method: lookup, lookupValue: name, returnValue: code, parameterIndex: 1 }
+            - { method: reverseLookup, lookupValue: name, returnValue: code, parameterIndex: 1 }
     objectstateservice_completions:
         objectstate:
             - { method: loadObjectState, lookupValue: name, returnValue: id }
