@@ -34,3 +34,7 @@ parameters:
         view:
             - { method: getLimitationTypesByModuleFunction, lookupValue: name, parameterIndex: 1 }
             - { method: newPolicyCreateStruct, lookupValue: name, parameterIndex: 1 }
+    sectionservice_completions:
+        section:
+            - { method: loadSection, lookupValue: identifier, returnValue: id }
+            - { method: loadSectionByIdentifier, lookupValue: identifier }

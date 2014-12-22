@@ -29,6 +29,11 @@ services:
         arguments: [ @ezpublish.config.resolver, @ezpublish_legacy.kernel ]
         calls:
             - [setConfig, [%moduleviewservice_completions%]]
+    ezcompletionbundle.section:
+        class: Flageolett\eZCompletionBundle\Service\SectionServiceCompletion
+        arguments: [ @ezpublish.api.inner_repository ]
+        calls:
+            - [setConfig, [%sectionservice_completions%]]
 
     ezcompletionbundle.completion_service:
         class: Flageolett\eZCompletionBundle\Service\CompletionService
@@ -39,6 +44,4 @@ services:
            - [addCompletionService, [@ezcompletionbundle.objectstate]]
            - [addCompletionService, [@ezcompletionbundle.roles]]
            - [addCompletionService, [@ezcompletionbundle.module_view]]
-    ezcompletionbundle.completion_service_dependent:
-        class: Flageolett\eZCompletionBundle\Service\DependentCompletionService
-        arguments: [@ezcompletionbundle.module_view]
+           - [addCompletionService, [@ezcompletionbundle.section]]
