@@ -1,47 +1,64 @@
 parameters:
     contenttypeservice_completions:
-        contentType:
-            - { method: loadContentType, lookupValue: name, returnValue: id }
-            - { method: loadContentTypeDraft, lookupValue: name, returnValue: id }
-            - { method: loadContentTypeByIdentifier, lookupValue: name, returnValue: identifier }
-            - { method: loadContentTypeByRemoteId, lookupValue: name, returnValue: remoteId }
-        contentTypeGroup:
-            - { method: loadContentTypeGroup, lookupValue: identifier, returnValue: id }
-            - { method: loadContentTypeGroupByIdentifier, lookupValue: identifier }
+        fqn: \eZ\Publish\API\Repository\ContentTypeService
+        sources:
+            contentType:
+                - { method: loadContentType, lookupValue: name, returnValue: id }
+                - { method: loadContentTypeDraft, lookupValue: name, returnValue: id }
+                - { method: loadContentTypeByIdentifier, lookupValue: name, returnValue: identifier }
+                - { method: loadContentTypeByRemoteId, lookupValue: name, returnValue: remoteId }
+            contentTypeGroup:
+                - { method: loadContentTypeGroup, lookupValue: identifier, returnValue: id }
+                - { method: loadContentTypeGroupByIdentifier, lookupValue: identifier }
     fieldtypeservice_completions:
-        fieldType:
-            - { method: hasFieldType, lookupValue: identifier }
-            - { method: getFieldType, lookupValue: identifier }
+        fqn: \eZ\Publish\API\Repository\FieldTypeService
+        sources:
+            fieldType:
+                - { method: hasFieldType, lookupValue: identifier }
+                - { method: getFieldType, lookupValue: identifier }
     languageservice_completions:
-        language:
-            - { method: loadLanguage, lookupValue: name, returnValue: code }
-            - { method: loadLanguageById, lookupValue: name, returnValue: id }
-    #urlaliasservice_completions:
-            - { method: createUrlAlias, lookupValue: name, returnValue: code, parameterIndex: 2 }
-            - { method: createGlobalUrlAlias, lookupValue: name, returnValue: code, parameterIndex: 2 }
-            - { method: listLocationAliases, lookupValue: name, returnValue: code, parameterIndex: 2 }
-            - { method: listGlobalAliases, lookupValue: name, returnValue: code, parameterIndex: 0 }
-            - { method: lookup, lookupValue: name, returnValue: code, parameterIndex: 1 }
-            - { method: reverseLookup, lookupValue: name, returnValue: code, parameterIndex: 1 }
+        fqn: \eZ\Publish\API\Repository\LanguageService
+        sources:
+            language:
+                - { method: loadLanguage, lookupValue: name, returnValue: code }
+                - { method: loadLanguageById, lookupValue: name, returnValue: id }
+    urlaliasservice_completions:
+        fqn: \eZ\Publish\API\Repository\URLAliasService
+        sources:
+            language:
+                - { method: createUrlAlias, lookupValue: name, returnValue: code, parameterIndex: 2 }
+                - { method: createGlobalUrlAlias, lookupValue: name, returnValue: code, parameterIndex: 2 }
+                - { method: listLocationAliases, lookupValue: name, returnValue: code, parameterIndex: 2 }
+                - { method: listGlobalAliases, lookupValue: name, returnValue: code, parameterIndex: 0 }
+                - { method: lookup, lookupValue: name, returnValue: code, parameterIndex: 1 }
+                - { method: reverseLookup, lookupValue: name, returnValue: code, parameterIndex: 1 }
     objectstateservice_completions:
-        objectstate:
-            - { method: loadObjectState, lookupValue: name, returnValue: id }
-        objectstategroup:
-            - { method: loadObjectStateGroup, lookupValue: name, returnValue: id }
+        fqn: \eZ\Publish\API\Repository\ObjectStateService
+        sources:
+            objectstate:
+                - { method: loadObjectState, lookupValue: name, returnValue: id }
+            objectstategroup:
+                - { method: loadObjectStateGroup, lookupValue: name, returnValue: id }
     roleservice_completions:
-        limitation:
-            - { method: getLimitationType, lookupValue: identifier }
-        role:
-            - { method: loadRole, lookupValue: identifier, returnValue: id }
-            - { method: loadRoleByIdentifier, lookupValue: identifier }
-        module:
-            - { method: getLimitationTypesByModuleFunction, lookupValue: identifier }
-            - { method: newPolicyCreateStruct, lookupValue: identifier }
+        fqn: \eZ\Publish\API\Repository\RoleService
+        sources:
+            limitation:
+                - { method: getLimitationType, lookupValue: identifier }
+            role:
+                - { method: loadRole, lookupValue: identifier, returnValue: id }
+                - { method: loadRoleByIdentifier, lookupValue: identifier }
+            module:
+                - { method: getLimitationTypesByModuleFunction, lookupValue: identifier }
+                - { method: newPolicyCreateStruct, lookupValue: identifier }
     moduleviewservice_completions:
-        view:
-            - { method: getLimitationTypesByModuleFunction, lookupValue: name, parameterIndex: 1 }
-            - { method: newPolicyCreateStruct, lookupValue: name, parameterIndex: 1 }
+        fqn: \eZ\Publish\API\Repository\RoleService
+        sources:
+            view:
+                - { method: getLimitationTypesByModuleFunction, lookupValue: name, parameterIndex: 1 }
+                - { method: newPolicyCreateStruct, lookupValue: name, parameterIndex: 1 }
     sectionservice_completions:
-        section:
-            - { method: loadSection, lookupValue: identifier, returnValue: id }
-            - { method: loadSectionByIdentifier, lookupValue: identifier }
+        fqn: \eZ\Publish\API\Repository\SectionService
+        sources:
+            section:
+                - { method: loadSection, lookupValue: identifier, returnValue: id }
+                - { method: loadSectionByIdentifier, lookupValue: identifier }

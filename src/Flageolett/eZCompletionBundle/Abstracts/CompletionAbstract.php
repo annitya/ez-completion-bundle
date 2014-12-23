@@ -14,12 +14,15 @@ abstract class CompletionAbstract
 {
     use LanguageAware;
 
+    /** @var string */
+    protected $fqn;
     /** @var array */
-    protected $config;
+    protected $sources;
 
     public function setConfig($config)
     {
-        $this->config = $config;
+        $this->fqn = $config['fqn'];
+        $this->sources = $config['sources'];
     }
     
     public function getCompletions()
@@ -32,7 +35,7 @@ abstract class CompletionAbstract
     protected function mapCompletions($dataSource)
     {
         $completions = array();
-        foreach ($this->config as $type => $configurations) {
+        foreach ($this->sources as $type => $configurations) {
             $completions = array_merge($completions, $this->buildCompletionContainers($configurations, $dataSource[$type]));
         }
 
@@ -45,7 +48,7 @@ abstract class CompletionAbstract
         {
             $completions = $this->buildCompletions($config, $source);
             $parameterIndex = isset($config['parameterIndex']) ? $config['parameterIndex'] : 0;
-            return new CompletionContainer($config['method'], $parameterIndex, $completions);
+            return new CompletionContainer($this->fqn, $config['method'], $parameterIndex, $completions);
         }, $configs);
     }
 

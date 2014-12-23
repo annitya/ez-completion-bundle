@@ -11,9 +11,9 @@ class CompletionContainer
     public $matcher;
     public $completions;
 
-    public function __construct($method, $parameterIndex, $completions)
+    public function __construct($fqn, $method, $parameterIndex, $completions)
     {
-        $this->matcher = compact('method', 'parameterIndex');
+        $this->matcher = compact('fqn', 'method', 'parameterIndex');
         $this->completions = $completions;
     }
 }

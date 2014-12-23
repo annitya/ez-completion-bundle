@@ -16,8 +16,9 @@ class CompletionService
     /** @var CompletionAbstract[] */
     protected $completionServices;
 
-    public function addCompletionService($completionService)
+    public function addCompletionService(CompletionAbstract $completionService, $config)
     {
+        $completionService->setConfig($config);
         $this->completionServices[] = $completionService;
     }
 
