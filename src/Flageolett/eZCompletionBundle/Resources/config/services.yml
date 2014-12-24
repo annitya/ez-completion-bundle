@@ -13,6 +13,7 @@ services:
     ezcompletionbundle.objectstate:
         class: Flageolett\eZCompletionBundle\Service\ObjectStateServiceCompletion
         arguments: [ @ezpublish.api.service.object_state ]
+        scope: prototype
     ezcompletionbundle.roles:
         class: Flageolett\eZCompletionBundle\Service\RoleServiceCompletion
         arguments: [ @ezpublish.api.inner_repository, @ezpublish.config.resolver, @ezpublish_legacy.kernel ]
@@ -22,20 +23,27 @@ services:
     ezcompletionbundle.section:
         class: Flageolett\eZCompletionBundle\Service\SectionServiceCompletion
         arguments: [ @ezpublish.api.inner_repository ]
+        scope: prototype
 
     ezcompletionbundle.completion_service:
         class: Flageolett\eZCompletionBundle\Service\CompletionService
         scope: prototype
         calls:
            - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypeservice_completions%]]
-           - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypegroup_criteria%]]
-           - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypeid_criteria%]]
+           - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypegroup_criterion%]]
+           - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypeid_criterion%]]
+           - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypeidentifier_criterion%]]
 
            - [addCompletionService, [@ezcompletionbundle.language, %languageservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.language, %urlaliasservice_completions%]]
+           - [addCompletionService, [@ezcompletionbundle.language, %languagecode_criterion%]]
+
+           - [addCompletionService, [@ezcompletionbundle.objectstate, %objectstateservice_completions%]]
+           - [addCompletionService, [@ezcompletionbundle.objectstate, %objectstateid_criterion%]]
+
+           - [addCompletionService, [@ezcompletionbundle.section, %sectionservice_completions%]]
+           - [addCompletionService, [@ezcompletionbundle.section, %sectionid_criterion%]]
 
            - [addCompletionService, [@ezcompletionbundle.fieldtype, %fieldtypeservice_completions%]]
-           - [addCompletionService, [@ezcompletionbundle.objectstate, %objectstateservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.roles, %roleservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.module_view, %moduleviewservice_completions%]]
-           - [addCompletionService, [@ezcompletionbundle.section, %sectionservice_completions%]]

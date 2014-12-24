@@ -62,13 +62,33 @@ parameters:
             section:
                 - { method: loadSection, lookupValue: identifier, returnValue: id }
                 - { method: loadSectionByIdentifier, lookupValue: identifier }
-    contenttypegroup_criteria:
+    contenttypegroup_criterion:
         fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeGroupId
         sources:
             contentTypeGroup:
                 - { method: ContentTypeGroupId, lookupValue: identifier, returnValue: id }
-    contenttypeid_criteria:
+    contenttypeid_criterion:
         fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeId
         sources:
             contentType:
                 - { lookupValue: name, returnValue: id }
+    contenttypeidentifier_criterion:
+        fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeIdentifier
+        sources:
+            contentType:
+                - { lookupValue: name, returnValue: identifier }
+    languagecode_criterion:
+        fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\LanguageCode
+        sources:
+            language:
+                - { lookupValue: name, returnValue: code}
+    objectstateid_criterion:
+        fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ObjectStateId
+        sources:
+            objectstate:
+                - { lookupValue: name, returnValue: id }
+    sectionid_criterion:
+        fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\SectionId
+        sources:
+            section:
+                - { lookupValue: identifier, returnValue: id }
