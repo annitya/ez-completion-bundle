@@ -48,7 +48,8 @@ abstract class CompletionAbstract
         {
             $completions = $this->buildCompletions($config, $source);
             $parameterIndex = isset($config['parameterIndex']) ? $config['parameterIndex'] : 0;
-            return new CompletionContainer($this->fqn, $config['method'], $parameterIndex, $completions);
+            $method = isset($config['method']) ? $config['method']  : null;
+            return new CompletionContainer($this->fqn, $method, $parameterIndex, $completions);
         }, $configs);
     }
 

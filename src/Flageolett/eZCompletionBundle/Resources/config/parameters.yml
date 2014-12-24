@@ -62,3 +62,13 @@ parameters:
             section:
                 - { method: loadSection, lookupValue: identifier, returnValue: id }
                 - { method: loadSectionByIdentifier, lookupValue: identifier }
+    contenttypegroup_criteria:
+        fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeGroupId
+        sources:
+            contentTypeGroup:
+                - { method: ContentTypeGroupId, lookupValue: identifier, returnValue: id }
+    contenttypeid_criteria:
+        fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeId
+        sources:
+            contentType:
+                - { lookupValue: name, returnValue: id }

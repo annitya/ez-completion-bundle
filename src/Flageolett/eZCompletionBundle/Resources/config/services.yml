@@ -2,6 +2,7 @@ services:
     ezcompletionbundle.contenttype:
         class: Flageolett\eZCompletionBundle\Service\ContentTypeServiceCompletion
         arguments: [ @ezpublish.api.service.content_type ]
+        scope: prototype
     ezcompletionbundle.fieldtype:
         class: Flageolett\eZCompletionBundle\Service\FieldTypeServiceCompletion
         arguments: [ @ezpublish.api.service.field_type ]
@@ -27,9 +28,13 @@ services:
         scope: prototype
         calls:
            - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypeservice_completions%]]
-           - [addCompletionService, [@ezcompletionbundle.fieldtype, %fieldtypeservice_completions%]]
+           - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypegroup_criteria%]]
+           - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypeid_criteria%]]
+
            - [addCompletionService, [@ezcompletionbundle.language, %languageservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.language, %urlaliasservice_completions%]]
+
+           - [addCompletionService, [@ezcompletionbundle.fieldtype, %fieldtypeservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.objectstate, %objectstateservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.roles, %roleservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.module_view, %moduleviewservice_completions%]]
