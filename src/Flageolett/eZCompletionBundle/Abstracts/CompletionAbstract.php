@@ -66,13 +66,16 @@ abstract class CompletionAbstract
     protected function getTranslatedName($object)
     {
         /** @noinspection PhpUndefinedMethodInspection */
-        $name = $object->getName($this->language);
-        if (!$name) {
-            /** @noinspection PhpUndefinedMethodInspection */
-            $names = $object->getNames();
-            $name = array_shift($names);
+        $names = $object->getNames();
+        $name = array_shift($names);
+
+        if (!$this->language) {
+            return $name;
         }
 
-        return $name;
+        /** @noinspection PhpUndefinedMethodInspection */
+        $languageName = $object->getName($this->language);
+
+        return $languageName ?: $name;
     }
 }
