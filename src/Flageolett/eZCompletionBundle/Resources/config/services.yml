@@ -47,3 +47,8 @@ services:
            - [addCompletionService, [@ezcompletionbundle.fieldtype, %fieldtypeservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.roles, %roleservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.module_view, %moduleviewservice_completions%]]
+
+    ezcompletionbundle.query_service:
+        class: Flageolett\eZCompletionBundle\Service\QueryService
+        calls:
+            - [ setContainer, [ @service_container ] ]
