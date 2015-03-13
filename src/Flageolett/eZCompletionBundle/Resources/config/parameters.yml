@@ -92,3 +92,9 @@ parameters:
         sources:
             section:
                 - { lookupValue: identifier, returnValue: id }
+
+    configresolver_completions:
+        fqn: \eZ\Publish\Core\MVC\ConfigResolverInterface
+        sources:
+            parameters:
+                - { method: getParameter, lookupValue: name}

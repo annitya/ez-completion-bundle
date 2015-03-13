@@ -24,6 +24,9 @@ services:
         class: Flageolett\eZCompletionBundle\Service\SectionServiceCompletion
         arguments: [ @ezpublish.api.inner_repository ]
         scope: prototype
+    ezcompletionbundle.configresolver:
+        class: Flageolett\eZCompletionBundle\Service\ConfigResolverCompletion
+        arguments: [@service_container, %ezpublish.config.default_scope%]
 
     ezcompletionbundle.completion_service:
         class: Flageolett\eZCompletionBundle\Service\CompletionService
@@ -47,3 +50,5 @@ services:
            - [addCompletionService, [@ezcompletionbundle.fieldtype, %fieldtypeservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.roles, %roleservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.module_view, %moduleviewservice_completions%]]
+
+           - [addCompletionService, [@ezcompletionbundle.configresolver, %configresolver_completions%]]
