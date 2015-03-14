@@ -56,6 +56,16 @@ parameters:
             view:
                 - { method: getLimitationTypesByModuleFunction, lookupValue: name, parameterIndex: 1 }
                 - { method: newPolicyCreateStruct, lookupValue: name, parameterIndex: 1 }
+    repository_module_completion:
+        fqn: \eZ\Publish\API\Repository\Repository
+        sources:
+            module:
+                - { method: canUser, lookupValue: identifier }
+    repository_view_completion:
+        fqn: \eZ\Publish\API\Repository\Repository
+        sources:
+            view:
+                - { method: canUser, lookupValue: name, parameterIndex: 1 }
     sectionservice_completions:
         fqn: \eZ\Publish\API\Repository\SectionService
         sources:
