@@ -61,11 +61,13 @@ parameters:
         sources:
             module:
                 - { method: canUser, lookupValue: identifier }
+                - { method: hasAccess, lookupValue: identifier }
     repository_view_completion:
         fqn: \eZ\Publish\API\Repository\Repository
         sources:
             view:
                 - { method: canUser, lookupValue: name, parameterIndex: 1 }
+                - { method: hasAccess, lookupValue: name, parameterIndex: 1 }
     sectionservice_completions:
         fqn: \eZ\Publish\API\Repository\SectionService
         sources:
