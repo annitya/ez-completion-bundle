@@ -30,6 +30,7 @@ class CompletionCommand extends ContainerAwareCommand
 
         $completions = array(
             'list' => $completionService->getCompletions(),
+            'contentTypes' => $this->getContainer()->get('ezcompletionbundle.contenttype')->fetchContentTypes(),
             'contentLanguages' => $this->getAvailableLanguages()
         );
 

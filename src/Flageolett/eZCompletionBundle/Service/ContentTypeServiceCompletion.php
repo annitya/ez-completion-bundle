@@ -31,7 +31,7 @@ class ContentTypeServiceCompletion extends CompletionAbstract
         );
     }
 
-    protected function fetchContentTypes()
+    public function fetchContentTypes()
     {
         $contentTypeGroups = $this->contentTypeService->loadContentTypeGroups();
         $contentTypes = array();
