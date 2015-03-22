@@ -10,7 +10,6 @@ use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Values\Content\Language;
 use Flageolett\eZCompletionBundle\Abstracts\CompletionAbstract;
-use Flageolett\eZCompletionBundle\Interfaces\CompletionInterface;
 
 class LanguageServiceCompletion extends CompletionAbstract
 {
@@ -22,7 +21,7 @@ class LanguageServiceCompletion extends CompletionAbstract
         $this->languageService = $repository->getContentLanguageService();
     }
 
-    protected function getDataSource()
+    public function getDataSource()
     {
         $language = array_map(function(Language $language) {
             return array(

@@ -30,6 +30,15 @@ services:
         class: Flageolett\eZCompletionBundle\Service\ConfigResolverCompletion
         arguments: [@service_container, %ezpublish.config.default_scope%]
 
+    ezcompletionbundle.contenttype_templating:
+        class: Flageolett\eZCompletionBundle\Service\ContentTypeTemplate
+        arguments: [ @ezpublish.api.service.content_type, @templating, %kernel.cache_dir% ]
+
+    ezcompletionbundle.fieldcompletionfactory:
+        class: Flageolett\eZCompletionBundle\Service\FieldCompletionFactory
+        arguments: [ @ezpublish.api.service.content_type, @ezcompletionbundle.contenttype_templating, @ezcompletionbundle.language ]
+        scope: prototype
+
     ezcompletionbundle.completion_service:
         class: Flageolett\eZCompletionBundle\Service\CompletionService
         scope: prototype

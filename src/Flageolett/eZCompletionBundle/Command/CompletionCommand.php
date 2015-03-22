@@ -24,15 +24,22 @@ class CompletionCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $container = $this->getContainer();
         $language = $input->getOption(self::OPTION_LANGUAGE);
-        $completionService = $this->getContainer()->get('ezcompletionbundle.completion_service');
+        $completionService = $container->get('ezcompletionbundle.completion_service');
         $completionService->setLanguage($language);
+        $contentTypeTemplating = $container->get('ezcompletionbundle.contenttype_templating');
+        $contentTypeTemplating->setLanguage($language);
+        $container->get('ezcompletionbundle.fieldcompletionfactory')->attachCompletions($completionService);
 
         $completions = array(
             'list' => $completionService->getCompletions(),
-            'contentTypes' => $this->getContainer()->get('ezcompletionbundle.contenttype')->fetchContentTypes(),
-            'contentLanguages' => $this->getAvailableLanguages()
+            'contentTypes' => $container->get('ezcompletionbundle.contenttype')->fetchContentTypes(),
+            'contentLanguages' => $this->getAvailableLanguages(),
+            'includePath' => $contentTypeTemplating->getDestinationPath()
         );
+
+        $contentTypeTemplating->generate();
 
         $output->writeln(json_encode($completions, JSON_PRETTY_PRINT));
     }
@@ -43,5 +50,15 @@ class CompletionCommand extends ContainerAwareCommand
         return array_map(function(Language $language) {
             return $language->languageCode;
         }, $languageService->loadLanguages());
+    }
+
+    protected function getIncludePath()
+    {
+        $cacheDirectory = $this->getContainer()->getParameter('kernel.cache_dir');
+        if (!is_dir($cacheDirectory)) {
+            mkdir($cacheDirectory);
+        }
+
+        return $cacheDirectory . DIRECTORY_SEPARATOR . 'eZCompletion';
     }
 }

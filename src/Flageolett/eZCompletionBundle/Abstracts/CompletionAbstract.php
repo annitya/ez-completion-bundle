@@ -9,10 +9,12 @@ namespace Flageolett\eZCompletionBundle\Abstracts;
 use Flageolett\eZCompletionBundle\Entity\Completion;
 use Flageolett\eZCompletionBundle\Entity\CompletionContainer;
 use Flageolett\eZCompletionBundle\Traits\LanguageAware;
+use Flageolett\eZCompletionBundle\Traits\NameFetcher;
 
 abstract class CompletionAbstract
 {
     use LanguageAware;
+    use NameFetcher;
 
     /** @var string */
     protected $fqn;
@@ -61,21 +63,5 @@ abstract class CompletionAbstract
             $returnValue = isset($config['returnValue']) ? $completionData[$config['returnValue']] : $lookupValue;
             return new Completion($lookupValue, $returnValue);
         }, $source);
-    }
-
-    protected function getTranslatedName($object)
-    {
-        /** @noinspection PhpUndefinedMethodInspection */
-        $names = $object->getNames();
-        $name = array_shift($names);
-
-        if (!$this->language) {
-            return $name;
-        }
-
-        /** @noinspection PhpUndefinedMethodInspection */
-        $languageName = $object->getName($this->language);
-
-        return $languageName ?: $name;
     }
 }

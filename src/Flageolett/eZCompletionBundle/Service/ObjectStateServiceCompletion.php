@@ -38,7 +38,7 @@ class ObjectStateServiceCompletion extends CompletionAbstract
             {
                 return array(
                     'id' => (int)$objectState->id,
-                    'name' => $this->getTranslatedName($objectState)
+                    'name' => self::getTranslatedName($objectState, $this->language)
                 );
             }, $this->objectStateService->loadObjectStates($group)), $completions);
         }
@@ -52,7 +52,7 @@ class ObjectStateServiceCompletion extends CompletionAbstract
         {
             return array(
                 'id' => (int)$objectStateGroup->id,
-                'name' => $this->getTranslatedName($objectStateGroup)
+                'name' => self::getTranslatedName($objectStateGroup, $this->language)
             );
         }, $this->objectStateService->loadObjectStateGroups());
     }

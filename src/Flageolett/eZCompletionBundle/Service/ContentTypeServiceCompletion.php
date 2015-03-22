@@ -40,7 +40,7 @@ class ContentTypeServiceCompletion extends CompletionAbstract
             {
                 return array(
                     'id' => (int)$contentType->id,
-                    'name' => $this->getTranslatedName($contentType),
+                    'name' => self::getTranslatedName($contentType, $this->language),
                     'identifier' => $contentType->identifier,
                     'remoteId' => $contentType->remoteId
                 );
