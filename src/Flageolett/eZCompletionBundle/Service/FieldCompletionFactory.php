@@ -57,12 +57,12 @@ class FieldCompletionFactory
     {
         $config = array('fqn' => '\\eZCompletion\\' . $identifier);
         $fieldSource = array(
-            'method' => 'getFieldValue',
+            'method' => 'getField',
             'lookupValue' => 'name',
             'returnValue' => 'identifier'
         );
         $languageSource = array(
-            'method' => 'getFieldValue',
+            'method' => 'getField',
             'parameterIndex' => 1,
             'lookupValue' => 'name',
             'returnValue' => 'code'
@@ -71,6 +71,12 @@ class FieldCompletionFactory
             'field' => array($fieldSource),
             'language' => array($languageSource)
         );
+
+        $fieldSource['method'] = 'getFieldValue';
+        $config['sources']['field'][] = $fieldSource;
+        
+        $languageSource['method'] = 'getFieldValue';
+        $config['sources']['language'][] = $languageSource;
 
         return $config;
     }
