@@ -32,7 +32,9 @@ services:
 
     ezcompletionbundle.contenttype_templating:
         class: Flageolett\eZCompletionBundle\Service\ContentTypeTemplate
-        arguments: [ @ezpublish.api.service.content_type, @templating, %kernel.cache_dir% ]
+        arguments: [ @ezpublish.api.service.content_type, @templating ]
+        tags:
+          - { name: kernel.cache_warmer }
 
     ezcompletionbundle.fieldcompletionfactory:
         class: Flageolett\eZCompletionBundle\Service\FieldCompletionFactory

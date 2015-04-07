@@ -5,19 +5,18 @@ namespace Flageolett\eZCompletionBundle\Service;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 
-class ContentTypeTemplate
+class ContentTypeTemplate implements CacheWarmerInterface
 {
     protected $contentTypeService;
     protected $templating;
-    protected $cacheDir;
     protected $language;
 
-    public function __construct(ContentTypeService $contentTypeService, EngineInterface $templating, $cacheDir)
+    public function __construct(ContentTypeService $contentTypeService, EngineInterface $templating)
     {
         $this->contentTypeService = $contentTypeService;
         $this->templating = $templating;
-        $this->cacheDir = $cacheDir;
     }
 
     public function setLanguage($language)
@@ -25,14 +24,16 @@ class ContentTypeTemplate
         $this->language = $language;
     }
 
-    public function getDestinationPath()
+    /**
+     * Warms up the cache.
+     *
+     * @param string $cacheDir The cache directory
+     *
+     * @return string
+     */
+    public function warmUp($cacheDir)
     {
-        return $this->cacheDir . DIRECTORY_SEPARATOR . 'eZCompletion';
-    }
-
-    public function generate()
-    {
-        $destinationPath = $this->getDestinationPath();
+        $destinationPath = $cacheDir . DIRECTORY_SEPARATOR . 'eZCompletion';
         if (!is_dir($destinationPath)) {
             mkdir($destinationPath);
         }
@@ -43,6 +44,8 @@ class ContentTypeTemplate
             $filename = $destinationPath . DIRECTORY_SEPARATOR . $contentType->identifier . '.php';
             file_put_contents($filename, $php);
         }
+
+        return $destinationPath;
     }
 
     /**
@@ -57,4 +60,16 @@ class ContentTypeTemplate
         }
         return $contentTypes;
     }
+
+    /**
+     * Checks whether this warmer is optional or not.
+     *
+     * Optional warmers can be ignored on certain conditions.
+     *
+     * A warmer should return true if the cache can be
+     * generated incrementally and on-demand.
+     *
+     * @return bool true if the warmer is optional, false otherwise
+     */
+    public function isOptional() { return true; }
 }
