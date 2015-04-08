@@ -35,6 +35,7 @@ class CompletionCommand extends ContainerAwareCommand
         $completions = array(
             'list' => $completionService->getCompletions(),
             'contentTypes' => $container->get('ezcompletionbundle.contenttype')->fetchContentTypes(),
+            'contentTypeFields' => $container->get('ezcompletionbundle.contentfieldmap')->getCompletions(),
             'contentLanguages' => $this->getAvailableLanguages(),
             'includePath' => $contentTypeTemplating->warmUp($container->getParameter('kernel.cache_dir'))
         );

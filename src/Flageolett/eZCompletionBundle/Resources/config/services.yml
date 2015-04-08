@@ -41,6 +41,11 @@ services:
         arguments: [ @ezpublish.api.service.content_type, @ezcompletionbundle.contenttype_templating, @ezcompletionbundle.language ]
         scope: prototype
 
+
+    ezcompletionbundle.contentfieldmap:
+        class: Flageolett\eZCompletionBundle\Service\ContentFieldMap
+        arguments: [ @ezcompletionbundle.contenttype_templating ]
+
     ezcompletionbundle.completion_service:
         class: Flageolett\eZCompletionBundle\Service\CompletionService
         scope: prototype
