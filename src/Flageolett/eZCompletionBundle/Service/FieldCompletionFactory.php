@@ -28,12 +28,11 @@ class FieldCompletionFactory
     {
         $contentTypes = $this->contentTypeTemplate->getContentTypes();
         foreach ($contentTypes as $contentType) {
-            $config = $this->buildConfig($contentType->identifier);
-            $source = $this->languageServiceCompletion->getDataSource();
-            $source['field'] = $this->buildFieldSource($contentType->fieldDefinitions);
+            $source = array('field' => $this->buildFieldSource($contentType->fieldDefinitions));
 
+            $fieldValueConfig = $this->buildGetFieldValueConfig($contentType->identifier);
             $fieldCompletion = new FieldCompletion($source);
-            $completionService->addCompletionService($fieldCompletion, $config);
+            $completionService->addCompletionService($fieldCompletion, $fieldValueConfig);
         }
     }
 
@@ -53,7 +52,7 @@ class FieldCompletionFactory
         }, $fieldDefinitions);
     }
 
-    protected function buildConfig($identifier)
+    protected function buildGetFieldValueConfig($identifier)
     {
         $config = array('fqn' => '\\eZCompletion\\' . $identifier);
         $fieldSource = array(
@@ -61,17 +60,8 @@ class FieldCompletionFactory
             'lookupValue' => 'name',
             'returnValue' => 'identifier'
         );
-        $languageSource = array(
-            'method' => 'getFieldValue',
-            'parameterIndex' => 1,
-            'lookupValue' => 'name',
-            'returnValue' => 'code'
-        );
-        $config['sources'] = array(
-            'field' => array($fieldSource),
-            'language' => array($languageSource)
-        );
 
+        $config['sources']['field'] = array($fieldSource);
         return $config;
     }
 }
