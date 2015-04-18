@@ -38,7 +38,7 @@ class ModuleViewCompletionService extends DependentCompletionAbstract
             $views = array();
             foreach ($modules as $moduleIdentifier) {
                 $module = \eZModule::findModule($moduleIdentifier);
-                if (!$module->hasAttribute('views')) {
+                if (!$module || !$module->hasAttribute('views')) {
                     continue;
                 }
 

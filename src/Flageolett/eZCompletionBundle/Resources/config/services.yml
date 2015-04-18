@@ -58,6 +58,7 @@ services:
            - [addCompletionService, [@ezcompletionbundle.language, %languageservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.language, %urlaliasservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.language, %languagecode_criterion%]]
+           - [addCompletionService, [@ezcompletionbundle.language, %content_completions%]]
 
            - [addCompletionService, [@ezcompletionbundle.objectstate, %objectstateservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.objectstate, %objectstateid_criterion%]]
