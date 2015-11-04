@@ -28,7 +28,6 @@ class CompletionCommand extends ContainerAwareCommand
         $language = $input->getOption(self::OPTION_LANGUAGE);
         $completionService = $container->get('ezcompletionbundle.completion_service');
         $completionService->setLanguage($language);
-        $container->get('ezcompletionbundle.fieldcompletionfactory')->attachCompletions($completionService);
 
         $completions = array(
             'list' => $completionService->getCompletions(),
