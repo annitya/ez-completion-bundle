@@ -14,19 +14,19 @@ class FieldCompletionFactory
     use NameFetcher;
 
     protected $contentTypeService;
-    protected $contentTypeTemplate;
+    protected $contentTypeServiceCompletion;
     protected $languageServiceCompletion;
 
-    public function __construct(ContentTypeService $contentTypeService, ContentTypeTemplate $contentTypeTemplate, LanguageServiceCompletion $languageServiceCompletion)
+    public function __construct(ContentTypeService $contentTypeService, ContentTypeServiceCompletion $contentTypeServiceCompletion, LanguageServiceCompletion $languageServiceCompletion)
     {
         $this->contentTypeService;
-        $this->contentTypeTemplate = $contentTypeTemplate;
+        $this->contentTypeServiceCompletion = $contentTypeServiceCompletion;
         $this->languageServiceCompletion = $languageServiceCompletion;
     }
 
     public function attachCompletions(CompletionService $completionService)
     {
-        $contentTypes = $this->contentTypeTemplate->getContentTypes();
+        $contentTypes = $this->contentTypeServiceCompletion->getContentTypes();
         foreach ($contentTypes as $contentType) {
             $source = array('field' => $this->buildFieldSource($contentType->fieldDefinitions));
 

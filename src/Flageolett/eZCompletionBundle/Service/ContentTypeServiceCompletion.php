@@ -31,23 +31,36 @@ class ContentTypeServiceCompletion extends CompletionAbstract
         );
     }
 
-    public function fetchContentTypes()
+    /**
+     * @return ContentType[]
+     */
+    public function getContentTypes()
     {
         $contentTypeGroups = $this->contentTypeService->loadContentTypeGroups();
         $contentTypes = array();
         foreach ($contentTypeGroups as $contentTypeGroup) {
-            $contentTypes = array_merge(array_map(function(ContentType $contentType)
-            {
-                return array(
-                    'id' => (int)$contentType->id,
-                    'name' => self::getTranslatedName($contentType, $this->language),
-                    'identifier' => $contentType->identifier,
-                    'remoteId' => $contentType->remoteId
-                );
+            $contentTypes = array_merge(array_map(function(ContentType $contentType) {
+                    return $contentType;
             }, $this->contentTypeService->loadContentTypes($contentTypeGroup)), $contentTypes);
         }
 
         return $contentTypes;
+    }
+
+    /**
+     * @return array
+     */
+    public function fetchContentTypes()
+    {
+        return array_map(function(ContentType $contentType)
+        {
+            return array(
+                'id' => (int)$contentType->id,
+                'name' => self::getTranslatedName($contentType, $this->language),
+                'identifier' => $contentType->identifier,
+                'remoteId' => $contentType->remoteId
+            );
+        }, $this->getContentTypes());
     }
 
     protected function fetchContentTypeGroups()

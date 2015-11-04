@@ -4,17 +4,17 @@ namespace Flageolett\eZCompletionBundle\Service;
 
 class ContentFieldMap
 {
-    protected $contentTypeTemplate;
+    protected $contentTypeServiceCompletion;
 
-    public function __construct(ContentTypeTemplate $contentTypeTemplate)
+    public function __construct(ContentTypeServiceCompletion $contentTypeServiceCompletion)
     {
-        $this->contentTypeTemplate = $contentTypeTemplate;
+        $this->contentTypeServiceCompletion = $contentTypeServiceCompletion;
     }
 
     public function getCompletions()
     {
         $fieldmap = array();
-        foreach ($this->contentTypeTemplate->getContentTypes() as $contentType) {
+        foreach ($this->contentTypeServiceCompletion->getContentTypes() as $contentType) {
             foreach ($contentType->getFieldDefinitions() as $fieldDefinition) {
                 $fieldmap[$contentType->identifier][$fieldDefinition->identifier] = get_class($fieldDefinition->defaultValue);
             }
