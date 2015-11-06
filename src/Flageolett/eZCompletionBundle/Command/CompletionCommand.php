@@ -19,7 +19,7 @@ class CompletionCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this->setName('ezcode:completion');
-        $this->addOption(self::OPTION_LANGUAGE, 'l', InputOption::VALUE_OPTIONAL, 'Language-code for returned completions');
+        $this->addOption(self::OPTION_LANGUAGE, 'l', InputOption::VALUE_OPTIONAL, 'Language-code for returned completions', false);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -29,10 +29,12 @@ class CompletionCommand extends ContainerAwareCommand
         $completionService = $container->get('ezcompletionbundle.completion_service');
         $completionService->setLanguage($language);
 
+        $contentFieldMapService = $container->get('ezcompletionbundle.contentfieldmap');
+        $contentFieldMapService->setLanguage($language);
         $completions = array(
             'list' => $completionService->getCompletions(),
             'contentTypes' => $container->get('ezcompletionbundle.contenttype')->fetchContentTypes(),
-            'contentTypeFields' => $container->get('ezcompletionbundle.contentfieldmap')->getCompletions(),
+            'contentTypeFields' => $contentFieldMapService->getCompletions(),
             'contentLanguages' => $this->getAvailableLanguages()
         );
 

@@ -8,15 +8,24 @@ trait NameFetcher
     {
         /** @noinspection PhpUndefinedMethodInspection */
         $names = $object->getNames();
-        $name = array_shift($names);
-
-        if (!$languageCode) {
-            return $name;
-        }
-
         /** @noinspection PhpUndefinedMethodInspection */
-        $languageName = $object->getName($languageCode);
+        $languageName = $languageCode ? $object->getName($languageCode) : false;
 
-        return $languageName ?: $name;
+        return self::fallback($names, $languageName);
+    }
+
+    protected static function getTranslatedDescription($object, $languageCode = false)
+    {
+        /** @noinspection PhpUndefinedMethodInspection */
+        $descriptions = $object->getDescriptions();
+        /** @noinspection PhpUndefinedMethodInspection */
+        $languageDescription = $languageCode ? $object->getDescription($languageCode) : false;
+
+        return self::fallback($descriptions, $languageDescription);
+    }
+
+    protected static function fallback($primary, $secondary = false)
+    {
+        return $secondary ?: array_shift($primary);
     }
 }
