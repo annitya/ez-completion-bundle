@@ -1,8 +1,8 @@
 {
   "name": "flageolett/ezcompletionbundle",
   "autoload" : {
-    "psr-0":{
-      "Flageolett": "src/"
+    "psr-4": {
+      "Flageolett\\eZCompletionBundle": ""
     }
   }
 }
