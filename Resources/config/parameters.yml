@@ -121,4 +121,5 @@ parameters:
         fqn: \eZ\Publish\Core\MVC\ConfigResolverInterface
         sources:
             parameters:
-                - { method: getParameter, lookupValue: name}
+                - { method: getParameter, lookupValue: name }
+                - { method: hasParameter, lookupValue: name }
