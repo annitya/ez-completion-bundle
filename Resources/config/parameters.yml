@@ -74,11 +74,6 @@ parameters:
             section:
                 - { method: loadSection, lookupValue: identifier, returnValue: id }
                 - { method: loadSectionByIdentifier, lookupValue: identifier }
-    contenttypegroup_criterion:
-        fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeGroupId
-        sources:
-            contentTypeGroup:
-                - { method: ContentTypeGroupId, lookupValue: identifier, returnValue: id }
     content_completions:
         fqn: \eZ\Publish\API\Repository\Values\Content\Content
         sources:
@@ -91,6 +86,11 @@ parameters:
             language:
                 - { method: getTranslatedField, lookupValue: name, returnValue: code, parameterIndex: 2 }
 
+    contenttypegroup_criterion:
+        fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeGroupId
+        sources:
+            contentTypeGroup:
+                - { method: ContentTypeGroupId, lookupValue: identifier, returnValue: id }
     contenttypeid_criterion:
         fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeId
         sources:
