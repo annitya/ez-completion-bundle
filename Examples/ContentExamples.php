@@ -77,26 +77,28 @@ class Examples extends Controller
         $content->getFieldsByLanguage('eng-GB')['|'];
         // Result
         $content->getFieldsByLanguage('eng-GB')['publish_date'];
-        // @TODO: Type-provider is unavailable as of now.
-        $content->getFieldsByLanguage('eng-GB')['publish_date']; // Not working.
+        // Result
+        $content->getFieldsByLanguage('eng-GB')['publish_date']->stringFormat;
 
         // getTranslatedField
         $translationHelper = $this->container->get('ezpublish.translation_helper');
         $translationHelper->getTranslatedField($content, '|');
         // Result
         $translationHelper->getTranslatedField($content, 'publish_date');
+        // Result
+        $translationHelper->getTranslatedField($content, 'publish_date', '|')->stringFormat;
         // Provided type: (DateAndTime)
-        $translationHelper->getTranslatedField($content, 'publish_date')->stringFormat;
+        $translationHelper->getTranslatedField($content, 'publish_date', 'eng-GB')->stringFormat;
 
         // isFieldEmpty
         $fieldHelper = $this->container->get('ezpublish.field_helper');
-        /** @TODO: missing */
-        $fieldHelper->isFieldEmpty($content, '|');
-        /** @TODO: missing */
+
+        $fieldHelper->isFieldEmpty($content, '');
+        // Result
         $fieldHelper->isFieldEmpty($content, 'publish_date', '|');
-        /** @TODO: missing */
+        // Result
         $fieldHelper->isFieldEmpty($content, 'publish_date', 'eng-GB');
-        /** @TODO: missing */
+        // Result
         $fieldHelper->isFieldEmpty($content, 'publish_date', 'eng-GB')->stringFormat;
     }
 }
