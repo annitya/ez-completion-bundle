@@ -85,6 +85,11 @@ parameters:
         sources:
             language:
                 - { method: getTranslatedField, lookupValue: name, returnValue: code, parameterIndex: 2 }
+    field_helper_completions:
+        fqn: \eZ\Publish\Core\Helper\FieldHelper
+        sources:
+            language:
+                - { method: isFieldEmpty, lookupValue: name, returnValue: code, parameterIndex: 2 }
 
     contenttypegroup_criterion:
         fqn: \eZ\Publish\API\Repository\Values\Content\Query\Criterion\ContentTypeGroupId

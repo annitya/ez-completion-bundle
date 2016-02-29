@@ -90,14 +90,14 @@ class Examples extends Controller
         // Provided type: (DateAndTime)
         $translationHelper->getTranslatedField($content, 'publish_date', 'eng-GB')->stringFormat;
 
-        // isFieldEmpty
         $fieldHelper = $this->container->get('ezpublish.field_helper');
 
+        // isFieldEmpty
         $fieldHelper->isFieldEmpty($content, '');
         // Result
         $fieldHelper->isFieldEmpty($content, 'publish_date', '|');
-        // Result
-        $fieldHelper->isFieldEmpty($content, 'publish_date', 'eng-GB');
+        // @TODO: Does not work for some reason.
+        $fieldHelper->isFieldEmpty($content, 'publish_date', '');
         // Result
         $fieldHelper->isFieldEmpty($content, 'publish_date', 'eng-GB')->stringFormat;
     }
