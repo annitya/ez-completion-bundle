@@ -86,7 +86,7 @@ class Examples extends Controller
         // Result
         $translationHelper->getTranslatedField($content, 'publish_date');
         // Result
-        $translationHelper->getTranslatedField($content, 'publish_date', '|')->stringFormat;
+        $translationHelper->getTranslatedField($content, 'publish_date', '|');
         // Provided type: (DateAndTime)
         $translationHelper->getTranslatedField($content, 'publish_date', 'eng-GB')->stringFormat;
 
@@ -95,10 +95,10 @@ class Examples extends Controller
         // isFieldEmpty
         $fieldHelper->isFieldEmpty($content, '');
         // Result
-        $fieldHelper->isFieldEmpty($content, 'publish_date', '|');
-        // @TODO: Does not work for some reason.
-        $fieldHelper->isFieldEmpty($content, 'publish_date', '');
+        $fieldHelper->isFieldEmpty($content, 'general_tags', '|');
         // Result
-        $fieldHelper->isFieldEmpty($content, 'publish_date', 'eng-GB')->stringFormat;
+        $fieldHelper->isFieldEmpty($content, 'general_tags', 'eng-GB');
+        // Provided type: NetGenTags
+        $fieldHelper->isFieldEmpty($content, 'general_tags', 'eng-GB')->tags;
     }
 }
