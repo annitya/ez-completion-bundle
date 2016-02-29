@@ -21,8 +21,10 @@ class CriteriaExamples extends Controller
     public function contentCriteria(Query $query)
     {
         $query->criterion[] = new Query\Criterion\LogicalAnd([
-            // @TODO: Broken.
-            new Query\Criterion\ContentTypeGroupId('|'),
+            // ContentTypeGroupId
+            new Query\Criterion\ContentTypeGroupId(''),
+            // Result
+            new Query\Criterion\ContentTypeGroupId(3),
             // ContentTypeId
             new Query\Criterion\ContentTypeId('|'),
             // Result
@@ -44,10 +46,5 @@ class CriteriaExamples extends Controller
             // Result
             new Query\Criterion\SectionId(5),
         ]);
-    }
-
-    public function locationCriteria(LocationQuery $query)
-    {
-        // @TODO: Missing.
     }
 }
