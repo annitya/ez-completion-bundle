@@ -1,0 +1,20 @@
+{# @ContentType container folder #}
+{# @ContentType item article #}
+
+{# Print-statement #}
+{{ ez_field_value(container, '|') }}
+{# All completons follow this pattern. #}
+{{ ez_field_value(container, 'name') }}
+
+{# If-statement #}
+{% if not ez_is_field_empty(item, 'author') %}
+    {{ ez_field_value(item, 'author') }}
+{% endif %}
+
+{# Set-block #}
+{% set hasBody = not ez_is_field_empty(item, 'body') %}
+
+{{ ez_render_field(event, 'category') }}
+{# Comments can be placed anywhere in the same file. #}
+{# Don't worry if the variable has the same name as the ContentType #}
+{# @ContentType event event #}
