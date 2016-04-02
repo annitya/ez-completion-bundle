@@ -31,9 +31,13 @@ class CompletionCommand extends ContainerAwareCommand
 
         $contentFieldMapService = $container->get('ezcompletionbundle.contentfieldmap');
         $contentFieldMapService->setLanguage($language);
+        $contentTypeServiceCompletion = $container->get('ezcompletionbundle.contenttype');
+        
         $completions = array(
             'list' => $completionService->getCompletions(),
-            'contentTypes' => $container->get('ezcompletionbundle.contenttype')->fetchContentTypes(),
+            'contentTypes' => $contentTypeServiceCompletion->fetchContentTypes(),
+            'contentTypeGroups' => $contentTypeServiceCompletion->fetchContentTypeGroups(),
+            'sections' => $container->get('ezcompletionbundle.section')->fetchSections(),
             'contentTypeFields' => $contentFieldMapService->getCompletions(),
             'contentLanguages' => $this->getAvailableLanguages()
         );

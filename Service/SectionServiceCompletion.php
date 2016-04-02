@@ -24,9 +24,9 @@ class SectionServiceCompletion extends CompletionAbstract
         $this->repository = $repository;
     }
 
-    protected function getDataSource()
+    public function fetchSections()
     {
-        $section = $this->repository->sudo(function()
+        return $this->repository->sudo(function()
         {
             return array_map(function(Section $section)
             {
@@ -36,7 +36,11 @@ class SectionServiceCompletion extends CompletionAbstract
                 );
             }, $this->sectionService->loadSections());
         });
+    }
 
+    protected function getDataSource()
+    {
+        $section = $this->fetchSections(); 
         return compact('section');
     }
 }

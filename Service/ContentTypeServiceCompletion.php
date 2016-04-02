@@ -63,7 +63,7 @@ class ContentTypeServiceCompletion extends CompletionAbstract
         }, $this->getContentTypes());
     }
 
-    protected function fetchContentTypeGroups()
+    public function fetchContentTypeGroups()
     {
         return array_map(function(ContentTypeGroup $contentTypeGroup)
         {
@@ -71,6 +71,6 @@ class ContentTypeServiceCompletion extends CompletionAbstract
                 'id' => (int)$contentTypeGroup->id,
                 'identifier' => $contentTypeGroup->identifier
             );
-        }, $contentTypeGroups = $this->contentTypeService->loadContentTypeGroups());
+        }, $this->contentTypeService->loadContentTypeGroups());
     }
 }
