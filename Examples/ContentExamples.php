@@ -63,7 +63,7 @@ class Examples extends Controller
         $content->getFields()['image']->destinationContentId;
 
         // getFieldValue
-        $content->getFieldValue('|');
+        $content->getFieldValue('');
         // Result
         $content->getFieldValue('title');
         // Provided type (TextLine)
@@ -93,7 +93,7 @@ class Examples extends Controller
         $fieldHelper = $this->container->get('ezpublish.field_helper');
 
         // isFieldEmpty
-        $fieldHelper->isFieldEmpty($content, '');
+        $fieldHelper->isFieldEmpty($content, '|');
         // Result
         $fieldHelper->isFieldEmpty($content, 'general_tags', '|');
         // Result

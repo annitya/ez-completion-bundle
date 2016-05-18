@@ -1,4 +1,9 @@
 parameters:
+    contentservice_completions:
+        fqn: \eZ\Publish\API\Repository\ContentService
+        sources:
+            language:
+                - { method: newContentCreateStruct, lookupValue: name, returnValue: code, parameterIndex: 1 }
     contenttypeservice_completions:
         fqn: \eZ\Publish\API\Repository\ContentTypeService
         sources:

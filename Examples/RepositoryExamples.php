@@ -52,8 +52,9 @@ class Examples extends Controller
 
     public function contentService(ContentService $contentService, $content)
     {
-        /** @TODO: missing */
         $contentService->newContentCreateStruct($content, '|');
+        // Result
+        $contentService->newContentCreateStruct($content, 'eng-GB');
     }
 
     public function contentLanguageService(LanguageService $languageService)
@@ -73,7 +74,7 @@ class Examples extends Controller
     {
         // loadContentType
         $contentTypeService->loadContentType('|');
-        // @TODO: Completions not searchable by text.
+        // Result
         $contentTypeService->loadContentType(4);
 
         // loadContentTypeByIdentifier
@@ -88,8 +89,8 @@ class Examples extends Controller
 
         // LoadContentTypeDraft
         $contentTypeService->loadContentTypeDraft('|');
-        // @TODO: Make sure only drafts are available?
-        $contentTypeService->loadContentTypeDraft(16);
+        // Result
+        $contentTypeService->loadContentTypeDraft(3);
 
         // loadContentTypeGroup
         $contentTypeService->loadContentTypeGroup('|');
@@ -164,7 +165,7 @@ class Examples extends Controller
     {
         // loadSection
         $sectionService->loadSection('|');
-        // @TODO: Not searchable by text.
+        // Result
         $sectionService->loadSection(5);
 
         // loadSectionByIdentifier

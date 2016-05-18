@@ -44,6 +44,7 @@ services:
            - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypeid_criterion%]]
            - [addCompletionService, [@ezcompletionbundle.contenttype, %contenttypeidentifier_criterion%]]
 
+           - [addCompletionService, [@ezcompletionbundle.language, %contentservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.language, %languageservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.language, %urlaliasservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.language, %languagecode_criterion%]]
