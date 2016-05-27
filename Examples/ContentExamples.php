@@ -8,6 +8,7 @@
 
 namespace Flageolett\eZCompletionBundle\Examples;
 
+use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\Core\MVC\Symfony\Controller\Controller;
 
 /**
@@ -22,6 +23,8 @@ class Examples extends Controller
      * Allows PhpStorm to provide you with available contentType-fields.
      *
      * Also available via intention: "Create eZDoc"
+     * 
+     * @param $content
      */
     public function eZDocCompletion($content)
     {
@@ -45,6 +48,7 @@ class Examples extends Controller
      * Completions for available fields.
      *
      * @ContentType article $content (ContentType-hints also works here)
+     * @param Content $content
      */
     public function contentCompletions(Content $content)
     {
