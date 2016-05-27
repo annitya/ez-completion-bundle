@@ -41,7 +41,7 @@ class Examples extends Controller
     /**
      * Completions for available fields.
      *
-     * @ContentType article $content (ContentType-hints also works here)
+     * @ContentType blog $content (ContentType-hints also works here)
      * @param Content $content
      */
     public function contentCompletions(Content $content)
@@ -49,14 +49,14 @@ class Examples extends Controller
         // fields
         $content->fields['|'];
         // Result
-        $content->fields['body'];
+        $content->fields['description'];
         // Type is also provided (eZXMLText)
-        $content->fields['body']->xml;
+        $content->fields['description']->xml;
 
         // getFields
         $content->getFields()['|'];
         // Result
-        $content->getFields()['image'];
+        $content->getFields()[''];
         // Type is also provided (eZObjectRelation)
         $content->getFields()['image']->destinationContentId;
 
