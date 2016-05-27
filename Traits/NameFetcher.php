@@ -17,8 +17,12 @@ trait NameFetcher
     protected static function getTranslatedDescription($object, $languageCode = false)
     {
         /** @noinspection PhpUndefinedMethodInspection */
-        $descriptions = $object->getDescriptions();
+        $descriptions = $object->getDescriptions() ?: [];
+        if (!$descriptions) {
+            return '';
+        }
         /** @noinspection PhpUndefinedMethodInspection */
+
         $languageDescription = $languageCode ? $object->getDescription($languageCode) : false;
 
         return self::fallback($descriptions, $languageDescription);
