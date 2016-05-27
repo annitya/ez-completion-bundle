@@ -1,8 +1,4 @@
 <?php
-/**
- * @author Henning Kvinnesland <henning@keyteq.no>
- * @since 22.11.14
- */
 
 namespace Flageolett\eZCompletionBundle\Command;
 

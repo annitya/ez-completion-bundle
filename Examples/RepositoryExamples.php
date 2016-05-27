@@ -1,10 +1,4 @@
 <?php
-/**
- * User:    Henning Kvinnesland
- * E-mail:  henning@byte.no
- * Date:    23.02.2016
- * Time:    19.49
- */
 
 namespace Flageolett\eZCompletionBundle\Examples;
 
