@@ -19,14 +19,11 @@ class RoleServiceCompletion extends CompletionAbstract
     protected $repository;
     /** @var ConfigResolverInterface */
     protected $configResolver;
-    /** @var \ezpKernelHandler */
-    protected $legacyKernel;
 
-    public function __construct(Repository $repository, ConfigResolverInterface $configResolver, \Closure $legacyKernel)
+    public function __construct(Repository $repository, ConfigResolverInterface $configResolver)
     {
         $this->repository = $repository;
         $this->configResolver = $configResolver;
-        $this->legacyKernel = $legacyKernel();
     }
 
     protected function getDataSource()
