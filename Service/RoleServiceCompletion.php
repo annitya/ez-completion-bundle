@@ -5,9 +5,10 @@ namespace Flageolett\eZCompletionBundle\Service;
 use eZ\Publish\API\Repository\Values\User\Limitation;
 use eZ\Publish\API\Repository\Values\User\Policy;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\User\Role;
 use Flageolett\eZCompletionBundle\Abstracts\CompletionAbstract;
-use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Api\Repository\Repository as RepositoryInterface;
 
 class RoleServiceCompletion extends CompletionAbstract
 {
@@ -16,7 +17,7 @@ class RoleServiceCompletion extends CompletionAbstract
     /** @var ConfigResolverInterface */
     protected $configResolver;
 
-    public function __construct(Repository $repository, ConfigResolverInterface $configResolver)
+    public function __construct(RepositoryInterface $repository, ConfigResolverInterface $configResolver)
     {
         $this->repository = $repository;
         $this->configResolver = $configResolver;
