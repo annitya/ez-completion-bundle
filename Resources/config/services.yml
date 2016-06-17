@@ -18,10 +18,12 @@ services:
         factory: [Flageolett\eZCompletionBundle\Factory\LegacyCompletionFactory, createRoleService]
         class: Flageolett\eZCompletionBundle\Service\RoleServiceCompletion
         arguments: [ @service_container ]
+        scope: prototype
     ezcompletionbundle.module_view:
         class: Flageolett\eZCompletionBundle\Factory\LegacyCompletionFactory
         factory: [Flageolett\eZCompletionBundle\Factory\LegacyCompletionFactory, createModuleViewService]
         arguments: [ @service_container ]
+        scope: prototype
     ezcompletionbundle.section:
         class: Flageolett\eZCompletionBundle\Service\SectionServiceCompletion
         arguments: [ @ezpublish.api.inner_repository ]
@@ -59,9 +61,14 @@ services:
            - [addCompletionService, [@ezcompletionbundle.section, %sectionid_criterion%]]
 
            - [addCompletionService, [@ezcompletionbundle.fieldtype, %fieldtypeservice_completions%]]
-           - [addCompletionService, [@ezcompletionbundle.roles, %roleservice_completions%]]
 
+           - [addCompletionService, [@ezcompletionbundle.roles, %roleservice_completions%]]
            - [addCompletionService, [@ezcompletionbundle.roles, %repository_module_completion%]]
 
+           - [addCompletionService, [@ezcompletionbundle.module_view, %repository_view_completion%]]
+           - [addCompletionService, [@ezcompletionbundle.module_view, %moduleviewservice_completions%]]
+
            - [addCompletionService, [@ezcompletionbundle.configresolver, %configresolver_completions%]]
+
+
 
