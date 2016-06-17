@@ -93,10 +93,8 @@ class Examples extends Controller
         // isFieldEmpty
         $fieldHelper->isFieldEmpty($content, '|');
         // Result
-        $fieldHelper->isFieldEmpty($content, 'general_tags', '|');
+        $fieldHelper->isFieldEmpty($content, 'description', '|');
         // Result
-        $fieldHelper->isFieldEmpty($content, 'general_tags', 'eng-GB');
-        // Provided type: NetGenTags
-        $fieldHelper->isFieldEmpty($content, 'general_tags', 'eng-GB')->tags;
+        $fieldHelper->isFieldEmpty($content, 'description', 'eng-GB');
     }
 }
