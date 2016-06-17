@@ -1,0 +1,8 @@
+system:
+    default:
+        location_view:
+            example:
+                gallery:
+                    template: "eZCompletionBundle:examples:detected_doc.html.twig"
+                    match:
+                      Identifier\ContentType: "contact_form"
